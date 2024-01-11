@@ -27,33 +27,22 @@ def img_whitebackground(image):
     return img_new
 
 
-COLOR_MAP = ['viridis', 'Accent', 'Accent_r', 'Blues', 'Blues_r', 'BrBG', 'BrBG_r', 'BuGn', 'BuGn_r',
-             'BuPu', 'BuPu_r', 'CMRmap', 'CMRmap_r', 'Dark2', 'Dark2_r', 'GnBu', 'GnBu_r',
-             'Grays', 'Greens', 'Greens_r', 'Greys', 'Greys_r', 'OrRd', 'OrRd_r', 'Oranges',
-             'Oranges_r', 'PRGn', 'PRGn_r', 'Paired', 'Paired_r', 'Pastel1', 'Pastel1_r',
-             'Pastel2', 'Pastel2_r', 'PiYG', 'PiYG_r', 'PuBu', 'PuBuGn', 'PuBuGn_r', 'PuBu_r',
-             'PuOr', 'PuOr_r', 'PuRd', 'PuRd_r', 'Purples', 'Purples_r', 'RdBu', 'RdBu_r',
-             'RdGy', 'RdGy_r', 'RdPu', 'RdPu_r', 'RdYlBu', 'RdYlBu_r', 'RdYlGn', 'RdYlGn_r',
-             'Reds', 'Reds_r', 'Set1', 'Set1_r', 'Set2', 'Set2_r', 'Set3', 'Set3_r', 'Spectral',
-             'Spectral_r', 'Wistia', 'Wistia_r', 'YlGn', 'YlGnBu', 'YlGnBu_r', 'YlGn_r', 'YlOrBr',
-             'YlOrBr_r', 'YlOrRd', 'YlOrRd_r', 'afmhot', 'afmhot_r', 'autumn', 'autumn_r',
-             'binary', 'binary_r', 'bone', 'bone_r', 'brg', 'brg_r', 'bwr', 'bwr_r', 'cividis',
-             'cividis_r', 'cool', 'cool_r', 'coolwarm', 'coolwarm_r', 'copper', 'copper_r',
-             'cubehelix', 'cubehelix_r', 'flag', 'flag_r', 'gist_earth', 'gist_earth_r',
-             'gist_gray', 'gist_gray_r', 'gist_grey', 'gist_heat', 'gist_heat_r', 'gist_ncar',
-             'gist_ncar_r', 'gist_rainbow', 'gist_rainbow_r', 'gist_stern', 'gist_stern_r',
-             'gist_yarg', 'gist_yarg_r', 'gist_yerg', 'gnuplot', 'gnuplot2', 'gnuplot2_r',
-             'gnuplot_r', 'gray', 'gray_r', 'grey', 'hot', 'hot_r', 'hsv', 'hsv_r', 'inferno',
-             'inferno_r', 'jet', 'jet_r', 'magma', 'magma_r', 'nipy_spectral', 'nipy_spectral_r',
-             'ocean', 'ocean_r', 'pink', 'pink_r', 'plasma', 'plasma_r', 'prism', 'prism_r',
-             'rainbow', 'rainbow_r', 'seismic', 'seismic_r', 'spring', 'spring_r', 'summer',
-             'summer_r', 'tab10', 'tab10_r', 'tab20', 'tab20_r', 'tab20b', 'tab20b_r', 'tab20c',
-             'tab20c_r', 'terrain', 'terrain_r', 'turbo', 'turbo_r', 'twilight', 'twilight_r',
-             'twilight_shifted', 'twilight_shifted_r', 'viridis_r', 'winter', 'winter_r']
+COLOR_MAP = ['viridis', 'Accent', 'Blues', 'BrBG', 'BuGn', 'BuPu', 'CMRmap','Dark2', 'GnBu',
+             'Grays', 'Greens', 'Greys', 'OrRd', 'Oranges', 'PRGn', 'Paired', 'Pastel1',
+             'Pastel2', 'PiYG', 'PuBu', 'PuBuGn', 'PuOr', 'PuRd', 'Purples', 'RdBu', 'RdGy',
+             'RdPu', 'RdYlBu', 'RdYlGn', 'Reds', 'Set1', 'Set2', 'Set3', 'Spectral', 'Wistia',
+             'YlGn', 'YlGnBu', 'YlOrBr', 'YlOrRd', 'afmhot', 'autumn', 'binary', 'bone',
+             'brg', 'bwr', 'cividis', 'cool', 'coolwarm', 'copper', 'cubehelix', 'flag',
+             'gist_earth', 'gist_gray', 'gist_grey', 'gist_heat', 'gist_ncar', 'gist_rainbow',
+             'gist_stern', 'gist_yarg', 'gist_yerg', 'gnuplot', 'gnuplot2', 'gray', 'grey',
+             'hot', 'hsv', 'inferno', 'jet', 'magma', 'nipy_spectral', 'ocean', 'pink', 'plasma',
+             'prism', 'rainbow', 'seismic', 'spring', 'summer', 'tab10', 'tab20', 'tab20b', 'tab20c',
+             'terrain', 'turbo', 'twilight', 'twilight_shifted', 'winter'
+             ]
 
 DEFAULT_FONT = os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'font')
 DEFAULT_FONT = os.path.join(DEFAULT_FONT,'Alibaba-PuHuiTi-Heavy.ttf')
-DEFAULT_TEXT = 'Word Cloud for ComfyUI by dzNodes'
+DEFAULT_TEXT = 'this is a demo of word cloud for ComfyUI by dzNodes'
 
 
 class ComfyWordCloud:
@@ -78,16 +67,16 @@ class ComfyWordCloud:
                 "min_font_size": ("INT", {"default": 4}),  # 单词最小size
                 "max_font_size": ("INT", {"default": 128}),  # 单词最大size
                 # "font_step": ("INT", {"default": 1}),  # 字体迭代步长，大于1时计算速度加快但易导致错误
-                "relative_scaling": ("FLOAT", {"default": 0.5, "min": 0.01, "max": 1.0, "step": 0.01}),  # 单词大小（按频率）离散度
+                "relative_scaling": ("FLOAT", {"default": 0.5, "min": 0.01, "max": 1.0, "step": 0.01}),  # 单词大小离散度
                 ## color control
                 "colormap": (COLOR_MAP,),  # 文字颜色
                 "background_color": ("STRING", {"default": "#FFFFFF"}),  # 背景颜色
-                "transparent_background": ("BOOLEAN", {"default": False}),  # 是否透明，如果是则background_color强制为None
+                "transparent_background": ("BOOLEAN", {"default": False}),  # 是否透明，如果是则需要background_color强制为None
                 ## word control
                 "prefer_horizontal": ("FLOAT", {"default": 0.9, "min": 0.0, "max": 1.0, "step": 0.01}),  # 横排比例
                 "max_words": ("INT", {"default": 200}),  # 最大单词数量
                 "repeat": ("BOOLEAN", {"default": False}),  # 允许重复单词直到最大单词数量
-                # "min_word_length": ("INT", {"default": 0}),
+                # "min_word_length": ("INT", {"default": 0}),  # 最小单词长度
                 "include_numbers": ("BOOLEAN", {"default": False}),  # 是否包含数字
                 # "collocations": ("BOOLEAN", {"default": False}),  # 词组关联开关
                 # "collocation_threshold": ("INT", {"default": 30}),  # 词组关联度
@@ -132,16 +121,14 @@ class ComfyWordCloud:
         else:
             print(f"# 😺dzNodes: WordCloud:  -> get text, total of {len(text)} chars.")
         freq_dict = WordCloud().process_text(' '.join(jieba.cut(text)))
-
         if not keynote_words == '':
             keynote_list = list(re.split(r'[，,\s*]', keynote_words))
             keynote_dict = {keynote_list[i]: keynote_weight + max(freq_dict.values()) for i in range(len(keynote_list))}
             freq_dict.update(keynote_dict)
-
         print(f"# 😺dzNodes: WordCloud:  -> word frequencies dict generated, include {len(freq_dict)} words.")
 
         if not os.path.exists(os.path.normpath(font_path)):
-            print(f"# 😺dzNodes: WordCloud:  -> {font_path} font_path is invalid, use default font.")
+            print(f"# 😺dzNodes: WordCloud:  -> font_path {font_path} not found, use default font Alibaba-PuHuiTi-Heavy.ttf.")
             font_path = DEFAULT_FONT
 
         stopwords_set = set(STOPWORDS).union(set(re.split(r'[，,\s*]', stopwords)))
