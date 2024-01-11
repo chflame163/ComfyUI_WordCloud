@@ -5,31 +5,31 @@ ComfyUI生成词云图像的插件。
 节点说明：
 
 ### Word Cloud:
-根据文本内容生成词云图，词的大小与文本内词频相关，频率越高文字越大。可定义配色，设定重点词，设定排除词。支持输入带alpha通道的图像生成具有轮廓形状的词云图。
+根据文本内容生成词云图像，词的大小与词频相关，频率越高文字越大。可定义配色，设定重点词，设定排除词等。支持输入带alpha通道的图像生成具有轮廓形状的词云图像。
 
 选项说明：   
-* color_ref_image: 输入的图片作为文字颜色的参考。
-* mask_image: 输入的图片作为文字形状的轮廓。如果带alpha通道，使用通道作为轮廓；不带通道的图片按颜色决定轮廓的形状，白色的部分将被排除。
-* text: 文本内容将分解为逐个单词作为词云的元素，单词出现频率越高，在词云上描绘得越大。
-* width: 生成图像的宽度。(如果有mask_image输入，则使用mask_image的尺寸，此次设置数值被忽略)
-* height: 生成图像的高度。(如果有mask_image输入，则使用mask_image的尺寸，此次设置数值被忽略)
+* color_ref_image: 输入的图像作为文字颜色的参考。
+* mask_image: 输入的图像作为文字形状的轮廓。如果带alpha通道，使用通道作为轮廓；不带通道的按颜色决定轮廓的形状，白色的部分将被排除。
+* text: 此处的文本内容将分解为逐个单词，这些单词作为词云的元素。单词出现频率越高，在词云上描绘得越大。
+* width: 生成图像的宽度。(如果有mask_image输入，则使用mask_image的尺寸，此设置数值被忽略)
+* height: 生成图像的高度。(如果有mask_image输入，则使用mask_image的尺寸，此设置数值被忽略)
 * scale: 放大系数，最终生成的图像大小将是width和height设定数值与此数相乘。
 * margin: 空白边大小。
-* font_path: 字体文件路径。建议使用ttf格式的字体。
-* min_font_size: 单词显示大小的最小值。
-* max_font_size：单词显示大小的最大值。
-* relative_scaling: 词云中词语的相对大小。值越大，离散度越高。
-* colormap: 文字颜色，这里使用的是Matplotlib 提供了多种预定义的 colormap。(如果有color_ref_image输入，则此处设置被忽略)
-* background_color: 背景颜色，使用16进制RGB格式描述。(如果transparent_background设定为True，则此处设置被忽略)
-* transparent_background: 背景是否透明。
+* font_path: 字体文件路径。建议使用ttf格式。
+* min_font_size: 单词元素显示的最小值。
+* max_font_size：单词元素显示的最大值。
+* relative_scaling: 词云中单词元素的相对大小。值越大，离散度越高。
+* colormap: 文字颜色。这里使用的是Matplotlib 提供的多种预定义colormap。(如果有color_ref_image输入，则此设置被忽略)
+* background_color: 背景颜色，使用16进制RGB格式描述。(如果transparent_background设定为True，则此设置被忽略)
+* transparent_background: 背景是否透明。此处设为True将输出带alpha通道的图像。
 * prefer_horizontal: 单词水平出现率。最低0(全竖排)，最高1(全横排)。
 * max_words: 单词最大数量。
-* repeat: 当单词不够最大数量时是否允许重复。
-* include_numbers: 是否包含数字。
-* random_state：用于控制词云生成过程中随机数生成器种子。设为-1为每次随机，其他值则每次固定。
-* stopwords: 屏蔽词。设定在此处的单词不会在图中出现，每个词之间用逗号(中英文均可)或空格分开。
-* contour_width: 轮廓宽度。有mask_image输入才起作用。
-* contour_color: 轮廓颜色。使用16进制RGB格式描述。有mask_image输入才起作用。
+* repeat: 当单词没有达到最大数量时是否允许重复。
+* include_numbers: 单词元素是否包含数字。
+* random_state：控制词云生成过程中随机数生成器的种子。设为-1为每次随机，其他值则每次固定。
+* stopwords: 屏蔽词。设定在此处的单词不会在图中出现，除非在重点词里有重新设定。每个词之间用逗号(中英文均可)或空格分开。
+* contour_width: 轮廓宽度。有mask_image输入才有效。
+* contour_color: 轮廓颜色。使用16进制RGB格式描述。有mask_image输入才有效。
 * keynote_words: 重点词。这里设定的单词将额外放大。每个词之间用逗号(中英文均可)或空格分开。
 * keynote_weight: 重点词加权。数值越大，重点词相对越大。
 
@@ -48,11 +48,11 @@ string字符串。
 ## 使用示例：
 
 ![image](image/comfy_wordcloud_advance.png)
-在workflow目录下有工作量示例文件。
+在workflow目录下有json格式的工作流示例文件。
 
 ## 安装方法：  
 
 * git clone 安装，或者下载解压zip文件，将得到的文件夹复制到 ComfyUI\custom_nodes\
 * 安装依赖包，在资源管理器ComfyUI\custom_nodes\ComfyUI_WordCloud 插件目录位置打开cmd窗口，输入以下命令：  
 ```..\..\..\python_embeded\python.exe -m pip install -r requirements.txt```
-* 重新打开ComfyUI
+* 重新打开ComfyUI。
