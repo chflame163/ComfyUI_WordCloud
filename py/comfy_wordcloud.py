@@ -126,15 +126,19 @@ class ComfyWordCloud:
                   ):
 
         # parameter preprocessing
-        if text == None:
+        if text == '':
             text = DEFAULT_TEXT
+            print(f"# 😺dzNodes: WordCloud:  -> text not found, use demo string.")
+        else:
+            print(f"# 😺dzNodes: WordCloud:  -> get text, total of {len(text)} chars.")
         freq_dict = WordCloud().process_text(' '.join(jieba.cut(text)))
 
-        if not keynote_words == None:
+        if not keynote_words == '':
             keynote_list = list(re.split(r'[，,\s*]', keynote_words))
             keynote_dict = {keynote_list[i]: keynote_weight + max(freq_dict.values()) for i in range(len(keynote_list))}
             freq_dict.update(keynote_dict)
-        print(f"# 😺dzNodes: WordCloud:  -> word frequencies dict is {freq_dict}")
+
+        print(f"# 😺dzNodes: WordCloud:  -> word frequencies dict generated, include {len(freq_dict)} words.")
 
         if not os.path.exists(os.path.normpath(font_path)):
             print(f"# 😺dzNodes: WordCloud:  -> {font_path} font_path is invalid, use default font.")
