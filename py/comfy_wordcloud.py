@@ -28,13 +28,13 @@ def img_whitebackground(image):
 
 
 COLOR_MAP = ['viridis', 'Accent', 'Blues', 'BrBG', 'BuGn', 'BuPu', 'CMRmap','Dark2', 'GnBu',
-             'Grays', 'Greens', 'Greys', 'OrRd', 'Oranges', 'PRGn', 'Paired', 'Pastel1',
+             'Grays', 'Greens', 'OrRd', 'Oranges', 'PRGn', 'Paired', 'Pastel1',
              'Pastel2', 'PiYG', 'PuBu', 'PuBuGn', 'PuOr', 'PuRd', 'Purples', 'RdBu', 'RdGy',
              'RdPu', 'RdYlBu', 'RdYlGn', 'Reds', 'Set1', 'Set2', 'Set3', 'Spectral', 'Wistia',
              'YlGn', 'YlGnBu', 'YlOrBr', 'YlOrRd', 'afmhot', 'autumn', 'binary', 'bone',
              'brg', 'bwr', 'cividis', 'cool', 'coolwarm', 'copper', 'cubehelix', 'flag',
              'gist_earth', 'gist_gray', 'gist_grey', 'gist_heat', 'gist_ncar', 'gist_rainbow',
-             'gist_stern', 'gist_yarg', 'gist_yerg', 'gnuplot', 'gnuplot2', 'gray', 'grey',
+             'gist_stern', 'gist_yarg', 'gist_yerg', 'gnuplot', 'gnuplot2',
              'hot', 'hsv', 'inferno', 'jet', 'magma', 'nipy_spectral', 'ocean', 'pink', 'plasma',
              'prism', 'rainbow', 'seismic', 'spring', 'summer', 'tab10', 'tab20', 'tab20b', 'tab20c',
              'terrain', 'turbo', 'twilight', 'twilight_shifted', 'winter'
@@ -131,7 +131,13 @@ class ComfyWordCloud:
             print(f"# 😺dzNodes: WordCloud:  -> font_path {font_path} not found, use default font Alibaba-PuHuiTi-Heavy.ttf.")
             font_path = DEFAULT_FONT
 
-        stopwords_set = set(STOPWORDS).union(set(re.split(r'[，,\s*]', stopwords)))
+        if not stopwords == "":
+            # stopwords_set = set(STOPWORDS).union(set(re.split(r'[，,\s*]', stopwords)))  # 与自带默认排除词集合合并
+            stopwords_set = set(re.split(r'[，,\s*]', stopwords))
+            # 同时在词典中删除（stopwords之bug）
+            for item in stopwords_set:
+                if item in freq_dict.keys():
+                    del freq_dict[item]
 
         mode = 'RGB'
         if transparent_background:
