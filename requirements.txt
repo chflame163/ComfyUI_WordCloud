@@ -1,0 +1,6 @@
+numpy
+pillow
+torch
+matplotlib
+wordcloud
+jieba
