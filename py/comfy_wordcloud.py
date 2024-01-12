@@ -131,6 +131,7 @@ class ComfyWordCloud:
             print(f"# 😺dzNodes: WordCloud:  -> font_path {font_path} not found, use default font Alibaba-PuHuiTi-Heavy.ttf.")
             font_path = DEFAULT_FONT
 
+
         if not stopwords == "":
             # stopwords_set = set(STOPWORDS).union(set(re.split(r'[，,\s*]', stopwords)))  # 与自带默认排除词集合合并
             stopwords_set = set(re.split(r'[，,\s*]', stopwords))
@@ -138,6 +139,8 @@ class ComfyWordCloud:
             for item in stopwords_set:
                 if item in freq_dict.keys():
                     del freq_dict[item]
+        else:
+            stopwords_set = set("")
 
         mode = 'RGB'
         if transparent_background:
