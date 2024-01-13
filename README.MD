@@ -2,6 +2,19 @@
 ComfyUI生成词云图像的插件。
 ![image](image/comfy_wordcloud_simple.png)
 
+### 更新：
+通过编辑插件根目录下的font_dir.ini，用户可以自定义字体目录。每次启动comfyUI时，这个目录下*.ttf和*.otf文件将收集显示在插件font_path选择项中。
+
+font_dir.ini默认是windows系统字体目录(C:\Windows\fonts)。
+
+如果自定义的目录无效，将启用自带font目录，这个目录包含一个Alibaba-PuHuiTi-Heavy.ttf文件，版权归属阿里巴巴（中国）有限公司，允许任何个人和企业免费使用。
+
+### 重要提醒：加载之前工作流保存的旧版节点，需要重新设置字体。
+首先设置好font_dir.ini，启动comfyUI并加载工作流，在WordCloud节点的font_path选项栏中重新选择字体，即可避免报错。
+
+* 本次更新基于[ZHO-ZHO-ZHO](https://github.com/ZHO-ZHO-ZHO/ComfyUI-Text_Image-Composite)的建议和帮助。
+
+
 节点说明：
 
 ### Word Cloud:
