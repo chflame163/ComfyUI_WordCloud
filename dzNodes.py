@@ -27,7 +27,7 @@ def log(message, type=None, always=False, name=None):
     if name is None:
         name = get_extension_config()["name"]
 
-    print(f"(ComfyUI_dzNodes:{name}) {message}")
+    print(f"# 😺dzNodes: {name} -> {message}")
 
 
 def get_ext_dir(subpath=None, mkdir=False):

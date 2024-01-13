@@ -8,6 +8,10 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 from PIL import Image, ImageOps
 import jieba
 
+def log(message):
+    name = 'WordCloud'
+    print(f"# 😺dzNodes: {name} ->  {message}")
+
 COLOR_MAP = ['viridis', 'Accent', 'Blues', 'BrBG', 'BuGn', 'BuPu', 'CMRmap','Dark2', 'GnBu',
              'Grays', 'Greens', 'OrRd', 'Oranges', 'PRGn', 'Paired', 'Pastel1',
              'Pastel2', 'PiYG', 'PuBu', 'PuBuGn', 'PuOr', 'PuRd', 'Purples', 'RdBu', 'RdGy',
@@ -32,9 +36,9 @@ try:
         if os.path.exists(dir):
             font_dir = dir
         else:
-            print(f'# 😺dzNodes: WordCloud: ERROR -> invalid dir, default to be used. check {ini_file}')
+            log(f'ERROR: invalid dir, default to be used. check {ini_file}')
 except Exception as e:
-    print(f'# 😺dzNodes: WordCloud: ERROR -> {ini_file} ' + repr(e))
+    log(f'ERROR: {ini_file} ' + repr(e))
 
 file_list = glob.glob(font_dir + '/*.ttf')
 file_list.extend(glob.glob(font_dir + '/*.otf'))
@@ -43,7 +47,7 @@ for i in range(len(file_list)):
     _, filename =  os.path.split(file_list[i])
     font_dict[filename] = file_list[i]
 font_list = list(font_dict.keys())
-print(f'# 😺dzNodes: WordCloud: find {len(font_list)} fonts in {font_dir}')
+log(f'find {len(font_list)} fonts in {font_dir}')
 
 # Tensor to PIL
 def tensor2pil(image):
@@ -135,22 +139,22 @@ class ComfyWordCloud:
         # parameter preprocessing
         if text == '':
             text = default_text
-            print(f"# 😺dzNodes: WordCloud:  -> text input not found, use demo string.")
+            log(f"text input not found, use demo string.")
 
         freq_dict = WordCloud().process_text(' '.join(jieba.cut(text)))
         if not keynote_words == '':
             keynote_list = list(re.split(r'[，,\s*]', keynote_words))
             keynote_dict = {keynote_list[i]: keynote_weight + max(freq_dict.values()) for i in range(len(keynote_list))}
             freq_dict.update(keynote_dict)
-        print(f"# 😺dzNodes: WordCloud:  -> word frequencies dict generated, include {len(freq_dict)} words.")
+        log(f"word frequencies dict generated, include {len(freq_dict)} words.")
 
         font_path = font_dict[font_path]
         if not os.path.exists(font_path):
             font_path = os.path.join(os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'font'),
                                      'Alibaba-PuHuiTi-Heavy.ttf')
-            print(f"# 😺dzNodes: WordCloud:  -> font_path not found, use {font_path}")
+            log(f"font_path not found, use {font_path}")
         else:
-            print(f"# 😺dzNodes: WordCloud:  -> font_path = {font_path}")
+            log(f"font_path = {font_path}")
 
         stopwords_set = set("")
         if not stopwords == "":

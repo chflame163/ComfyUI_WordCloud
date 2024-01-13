@@ -9,6 +9,8 @@ font_dir.ini默认是windows系统字体目录(C:\Windows\fonts)。
 
 如果自定义的目录无效，将启用自带font目录，这个目录包含一个Alibaba-PuHuiTi-Heavy.ttf文件，版权归属阿里巴巴（中国）有限公司，允许任何个人和企业免费使用。
 
+增加RGB Color Picker节点，选择颜色更加方便。
+
 ### 重要提醒：加载之前工作流保存的旧版节点，需要重新设置字体。
 首先设置好font_dir.ini，启动comfyUI并加载工作流，在WordCloud节点的font_path选项栏中重新选择字体，即可避免报错。
 
@@ -48,6 +50,14 @@ font_dir.ini默认是windows系统字体目录(C:\Windows\fonts)。
 
 输出：
 image(支持alpha通道)
+
+### RGB Color Picker
+来自[mtb nodes](https://github.com/melMass/comfy_mtb)的Web Extensions，在色板上选取颜色，并输出RGB值。
+选项说明：   
+* mode： 输出格式，有十六进制(HEX)和十进制(DEC)可选择。  
+
+输出： 
+string字符串。
 
 ### Load Text File：
 从指定路径加载文本文件，设定使用utf-8编码。
