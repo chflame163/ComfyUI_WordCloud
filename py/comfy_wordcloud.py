@@ -1,4 +1,5 @@
 import os
+import glob
 import re
 import numpy as np
 import torch
@@ -7,6 +8,42 @@ from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 from PIL import Image, ImageOps
 import jieba
 
+COLOR_MAP = ['viridis', 'Accent', 'Blues', 'BrBG', 'BuGn', 'BuPu', 'CMRmap','Dark2', 'GnBu',
+             'Grays', 'Greens', 'OrRd', 'Oranges', 'PRGn', 'Paired', 'Pastel1',
+             'Pastel2', 'PiYG', 'PuBu', 'PuBuGn', 'PuOr', 'PuRd', 'Purples', 'RdBu', 'RdGy',
+             'RdPu', 'RdYlBu', 'RdYlGn', 'Reds', 'Set1', 'Set2', 'Set3', 'Spectral', 'Wistia',
+             'YlGn', 'YlGnBu', 'YlOrBr', 'YlOrRd', 'afmhot', 'autumn', 'binary', 'bone',
+             'brg', 'bwr', 'cividis', 'cool', 'coolwarm', 'copper', 'cubehelix', 'flag',
+             'gist_earth', 'gist_gray', 'gist_grey', 'gist_heat', 'gist_ncar', 'gist_rainbow',
+             'gist_stern', 'gist_yarg', 'gist_yerg', 'gnuplot', 'gnuplot2',
+             'hot', 'hsv', 'inferno', 'jet', 'magma', 'nipy_spectral', 'ocean', 'pink', 'plasma',
+             'prism', 'rainbow', 'seismic', 'spring', 'summer', 'tab10', 'tab20', 'tab20b', 'tab20c',
+             'terrain', 'turbo', 'twilight', 'twilight_shifted', 'winter'
+             ]
+
+default_text = 'demo of word cloud for ComfyUI by dzNodes'
+font_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'font')
+ini_file = os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), "font_dir.ini")
+
+try:
+    with open(ini_file, 'r') as f:
+        ini = f.read()
+        dir = ini[ini.find('=') + 1:].rstrip().lstrip()
+        if os.path.exists(dir):
+            font_dir = dir
+        else:
+            print(f'# 😺dzNodes: WordCloud: ERROR -> invalid dir, default to be used. check {ini_file}')
+except Exception as e:
+    print(f'# 😺dzNodes: WordCloud: ERROR -> {ini_file} ' + repr(e))
+
+file_list = glob.glob(font_dir + '/*.ttf')
+file_list.extend(glob.glob(font_dir + '/*.otf'))
+font_dict = {}
+for i in range(len(file_list)):
+    _, filename =  os.path.split(file_list[i])
+    font_dict[filename] = file_list[i]
+font_list = list(font_dict.keys())
+print(f'# 😺dzNodes: WordCloud: find {len(font_list)} fonts in {font_dir}')
 
 # Tensor to PIL
 def tensor2pil(image):
@@ -26,25 +63,6 @@ def img_whitebackground(image):
 
     return img_new
 
-
-COLOR_MAP = ['viridis', 'Accent', 'Blues', 'BrBG', 'BuGn', 'BuPu', 'CMRmap','Dark2', 'GnBu',
-             'Grays', 'Greens', 'OrRd', 'Oranges', 'PRGn', 'Paired', 'Pastel1',
-             'Pastel2', 'PiYG', 'PuBu', 'PuBuGn', 'PuOr', 'PuRd', 'Purples', 'RdBu', 'RdGy',
-             'RdPu', 'RdYlBu', 'RdYlGn', 'Reds', 'Set1', 'Set2', 'Set3', 'Spectral', 'Wistia',
-             'YlGn', 'YlGnBu', 'YlOrBr', 'YlOrRd', 'afmhot', 'autumn', 'binary', 'bone',
-             'brg', 'bwr', 'cividis', 'cool', 'coolwarm', 'copper', 'cubehelix', 'flag',
-             'gist_earth', 'gist_gray', 'gist_grey', 'gist_heat', 'gist_ncar', 'gist_rainbow',
-             'gist_stern', 'gist_yarg', 'gist_yerg', 'gnuplot', 'gnuplot2',
-             'hot', 'hsv', 'inferno', 'jet', 'magma', 'nipy_spectral', 'ocean', 'pink', 'plasma',
-             'prism', 'rainbow', 'seismic', 'spring', 'summer', 'tab10', 'tab20', 'tab20b', 'tab20c',
-             'terrain', 'turbo', 'twilight', 'twilight_shifted', 'winter'
-             ]
-
-DEFAULT_FONT = os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'font')
-DEFAULT_FONT = os.path.join(DEFAULT_FONT,'Alibaba-PuHuiTi-Heavy.ttf')
-DEFAULT_TEXT = 'this is a demo of word cloud for ComfyUI by dzNodes'
-
-
 class ComfyWordCloud:
 
     def __init__(self):
@@ -63,7 +81,7 @@ class ComfyWordCloud:
                 "margin": ("INT", {"default": 0}),  # 空白边界
 
                 ## font
-                "font_path": ("STRING", {"default": "c:\\font.ttf"}),  # 字体文件
+                "font_path": (font_list,),  # 字体文件
                 "min_font_size": ("INT", {"default": 4}),  # 单词最小size
                 "max_font_size": ("INT", {"default": 128}),  # 单词最大size
                 # "font_step": ("INT", {"default": 1}),  # 字体迭代步长，大于1时计算速度加快但易导致错误
@@ -116,10 +134,9 @@ class ComfyWordCloud:
 
         # parameter preprocessing
         if text == '':
-            text = DEFAULT_TEXT
-            print(f"# 😺dzNodes: WordCloud:  -> text not found, use demo string.")
-        else:
-            print(f"# 😺dzNodes: WordCloud:  -> get text, total of {len(text)} chars.")
+            text = default_text
+            print(f"# 😺dzNodes: WordCloud:  -> text input not found, use demo string.")
+
         freq_dict = WordCloud().process_text(' '.join(jieba.cut(text)))
         if not keynote_words == '':
             keynote_list = list(re.split(r'[，,\s*]', keynote_words))
@@ -127,11 +144,15 @@ class ComfyWordCloud:
             freq_dict.update(keynote_dict)
         print(f"# 😺dzNodes: WordCloud:  -> word frequencies dict generated, include {len(freq_dict)} words.")
 
-        if not os.path.exists(os.path.normpath(font_path)):
-            print(f"# 😺dzNodes: WordCloud:  -> font_path {font_path} not found, use default font Alibaba-PuHuiTi-Heavy.ttf.")
-            font_path = DEFAULT_FONT
+        font_path = font_dict[font_path]
+        if not os.path.exists(font_path):
+            font_path = os.path.join(os.path.join(os.path.dirname(os.path.dirname(os.path.normpath(__file__))), 'font'),
+                                     'Alibaba-PuHuiTi-Heavy.ttf')
+            print(f"# 😺dzNodes: WordCloud:  -> font_path not found, use {font_path}")
+        else:
+            print(f"# 😺dzNodes: WordCloud:  -> font_path = {font_path}")
 
-
+        stopwords_set = set("")
         if not stopwords == "":
             # stopwords_set = set(STOPWORDS).union(set(re.split(r'[，,\s*]', stopwords)))  # 与自带默认排除词集合合并
             stopwords_set = set(re.split(r'[，,\s*]', stopwords))
@@ -139,8 +160,6 @@ class ComfyWordCloud:
             for item in stopwords_set:
                 if item in freq_dict.keys():
                     del freq_dict[item]
-        else:
-            stopwords_set = set("")
 
         mode = 'RGB'
         if transparent_background:
