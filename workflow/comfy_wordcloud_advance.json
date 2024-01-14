@@ -1,20 +1,20 @@
 {
-  "last_node_id": 13,
-  "last_link_id": 35,
+  "last_node_id": 15,
+  "last_link_id": 37,
   "nodes": [
     {
       "id": 7,
       "type": "ImageScale",
       "pos": [
-        1387,
-        322
+        1384,
+        493
       ],
       "size": {
         "0": 315,
         "1": 130
       },
       "flags": {},
-      "order": 5,
+      "order": 7,
       "mode": 0,
       "inputs": [
         {
@@ -61,92 +61,18 @@
       ]
     },
     {
-      "id": 9,
-      "type": "ComfyWordCloud",
-      "pos": [
-        940,
-        177
-      ],
-      "size": {
-        "0": 400,
-        "1": 600
-      },
-      "flags": {},
-      "order": 3,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "color_ref_image",
-          "type": "IMAGE",
-          "link": 19
-        },
-        {
-          "name": "mask_image",
-          "type": "IMAGE",
-          "link": 28
-        },
-        {
-          "name": "text",
-          "type": "STRING",
-          "link": 21,
-          "widget": {
-            "name": "text"
-          }
-        }
-      ],
-      "outputs": [
-        {
-          "name": "image",
-          "type": "IMAGE",
-          "links": [
-            23,
-            24
-          ],
-          "shape": 3,
-          "slot_index": 0
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "ComfyWordCloud"
-      },
-      "widgets_values": [
-        "",
-        512,
-        512,
-        4,
-        0,
-        "C:\\AIRes\\font\\锐字真言体RZZhenYan.ttf",
-        4,
-        128,
-        0.5,
-        "Oranges",
-        "#000000",
-        false,
-        0.9,
-        200,
-        false,
-        false,
-        -1,
-        "的，是，再",
-        0,
-        "#000000",
-        "重,大,新,闻",
-        60
-      ]
-    },
-    {
       "id": 8,
       "type": "GetImageSize",
       "pos": [
-        1390,
-        216
+        1386,
+        396
       ],
       "size": {
         "0": 210,
         "1": 46
       },
       "flags": {},
-      "order": 4,
+      "order": 5,
       "mode": 0,
       "inputs": [
         {
@@ -180,63 +106,41 @@
       }
     },
     {
-      "id": 11,
-      "type": "Image Rembg (Remove Background)",
+      "id": 15,
+      "type": "PreviewImage",
       "pos": [
-        578,
-        558
+        1377,
+        29
       ],
-      "size": {
-        "0": 315,
-        "1": 250
-      },
+      "size": [
+        326.0002197265626,
+        305.60007629394534
+      ],
       "flags": {},
-      "order": 2,
+      "order": 6,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 27
-        }
-      ],
-      "outputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "links": [
-            28
-          ],
-          "shape": 3,
-          "slot_index": 0
+          "link": 37
         }
       ],
       "properties": {
-        "Node name for S&R": "Image Rembg (Remove Background)"
-      },
-      "widgets_values": [
-        true,
-        "u2net",
-        false,
-        false,
-        false,
-        240,
-        10,
-        10,
-        "none"
-      ]
+        "Node name for S&R": "PreviewImage"
+      }
     },
     {
       "id": 1,
       "type": "LoadTextFile",
       "pos": [
-        587,
-        140
+        592,
+        45
       ],
-      "size": [
-        289.6014779663086,
-        58
-      ],
+      "size": {
+        "0": 289.6014709472656,
+        "1": 58
+      },
       "flags": {},
       "order": 0,
       "mode": 0,
@@ -259,59 +163,160 @@
       ]
     },
     {
-      "id": 3,
-      "type": "LoadImage",
+      "id": 14,
+      "type": "RGB_Picker",
       "pos": [
-        584,
-        251
+        942,
+        25
       ],
-      "size": [
-        295.9548724365235,
-        245.6844891357423
-      ],
+      "size": {
+        "0": 210,
+        "1": 94
+      },
       "flags": {},
       "order": 1,
       "mode": 0,
       "outputs": [
         {
-          "name": "IMAGE",
-          "type": "IMAGE",
+          "name": "value",
+          "type": "STRING",
           "links": [
-            13,
-            19,
-            27
+            36
           ],
           "shape": 3,
           "slot_index": 0
-        },
-        {
-          "name": "MASK",
-          "type": "MASK",
-          "links": null,
-          "shape": 3
         }
       ],
       "properties": {
-        "Node name for S&R": "LoadImage"
+        "Node name for S&R": "RGB_Picker"
       },
       "widgets_values": [
-        "D04QPvc.jpg",
-        "image"
+        "#000000",
+        "HEX"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "ComfyWordCloud",
+      "pos": [
+        940,
+        177
+      ],
+      "size": [
+        394.4380239257812,
+        623.7396584472658
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "color_ref_image",
+          "type": "IMAGE",
+          "link": 19
+        },
+        {
+          "name": "mask_image",
+          "type": "IMAGE",
+          "link": 28
+        },
+        {
+          "name": "text",
+          "type": "STRING",
+          "link": 21,
+          "widget": {
+            "name": "text"
+          }
+        },
+        {
+          "name": "background_color",
+          "type": "STRING",
+          "link": 36,
+          "widget": {
+            "name": "background_color"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            23,
+            24,
+            37
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ComfyWordCloud"
+      },
+      "widgets_values": [
+        "",
+        512,
+        512,
+        4,
+        0,
+        "锐字真言体RZZhenYan.ttf",
+        4,
+        128,
+        0.5,
+        "Oranges",
+        "#000000",
+        false,
+        0.9,
+        200,
+        false,
+        false,
+        -1,
+        "的，是，再",
+        0,
+        "#000000",
+        "重,大,新,闻",
+        60
+      ]
+    },
+    {
+      "id": 13,
+      "type": "SaveImage",
+      "pos": [
+        1731,
+        35
+      ],
+      "size": [
+        673.695284497071,
+        738.2767741210939
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 35
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "ComfyUI"
       ]
     },
     {
       "id": 10,
       "type": "ImageBlend",
       "pos": [
-        1388,
-        518
+        1381,
+        676
       ],
       "size": {
         "0": 315,
         "1": 102
       },
       "flags": {},
-      "order": 6,
+      "order": 8,
       "mode": 0,
       "inputs": [
         {
@@ -345,29 +350,91 @@
       ]
     },
     {
-      "id": 13,
-      "type": "SaveImage",
+      "id": 3,
+      "type": "LoadImage",
       "pos": [
-        1746,
-        157
+        586,
+        164
       ],
-      "size": [
-        621.1948974609377,
-        604.6911083984376
-      ],
+      "size": {
+        "0": 295.9548645019531,
+        "1": 314
+      },
       "flags": {},
-      "order": 7,
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            13,
+            19,
+            27
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "D04QPvc.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 11,
+      "type": "Image Rembg (Remove Background)",
+      "pos": [
+        584,
+        541
+      ],
+      "size": {
+        "0": 315,
+        "1": 250
+      },
+      "flags": {},
+      "order": 3,
       "mode": 0,
       "inputs": [
         {
           "name": "images",
           "type": "IMAGE",
-          "link": 35
+          "link": 27
         }
       ],
-      "properties": {},
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            28
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Image Rembg (Remove Background)"
+      },
       "widgets_values": [
-        "ComfyUI"
+        true,
+        "u2net",
+        false,
+        false,
+        false,
+        240,
+        10,
+        10,
+        "none"
       ]
     }
   ],
@@ -457,6 +524,22 @@
       10,
       0,
       13,
+      0,
+      "IMAGE"
+    ],
+    [
+      36,
+      14,
+      0,
+      9,
+      3,
+      "STRING"
+    ],
+    [
+      37,
+      9,
+      0,
+      15,
       0,
       "IMAGE"
     ]
