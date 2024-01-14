@@ -20,6 +20,7 @@ font_dir.ini默认是windows系统字体目录(C:\Windows\fonts)。
 ## 节点说明：
 
 ### Word Cloud:
+![image](image/word_cloud.png)
 根据文本内容生成词云图像，词的大小与词频相关，频率越高文字越大。可定义配色，设定重点词，设定排除词等。支持输入带alpha通道的图像生成具有轮廓形状的词云图像。
 
 选项说明：   
@@ -52,6 +53,7 @@ font_dir.ini默认是windows系统字体目录(C:\Windows\fonts)。
 image(支持alpha通道)
 
 ### RGB Color Picker
+![image](image/rgb_color_picker.png)
 修改自[mtb nodes](https://github.com/melMass/comfy_mtb)的Web Extensions。在色板上选取颜色，并输出RGB值。
 
 选项说明：   
@@ -61,6 +63,7 @@ image(支持alpha通道)
 string字符串。
 
 ### Load Text File：
+![image](image/load_text_file.png)
 从指定路径加载文本文件，设定使用utf-8编码。
 
 选项说明：   

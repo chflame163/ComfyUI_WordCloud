@@ -23,6 +23,7 @@ This directory contains Alibaba-PuHuiTi-Heavy.ttf file, which belongs to Alibaba
 ## Node Description
 
 ### Word Cloud:
+![image](image/word_cloud.png)
 Generate word cloud images based on text content, where word size is related to word frequency, and the higher the frequency, the larger the text. Can define color schemes, set key words, set exclusion words, etc. Support generating word cloud images with contour shapes by inputting images with alpha channels.
 
 Node options£º   
@@ -55,7 +56,9 @@ Output£º
 image(support alpha channel)
 
 ### RGB Color Picker
+![image](image/rgb_color_picker.png)
 Modify web extensions from [mtb nodes](https://github.com/melMass/comfy_mtb). Select colors on the color palette and output RGB values.
+
 
 Node options£º   
 * mode£º The output format is available in hexadecimal (HEX) and decimal (DEC).  
@@ -64,6 +67,7 @@ Output£º
 string
 
 ### Load Text File£º
+![image](image/load_text_file.png)
 Load a text file from the specified path and set to use UTF-8 encoding.
 
 Options£º   
