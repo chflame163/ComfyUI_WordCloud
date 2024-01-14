@@ -2,7 +2,7 @@
 A plugin to generating word cloud images for ComfyUI
 ![image](image/comfy_wordcloud_advance.png)
 
-[中文说明点这里](./README-CN.md)
+[中文说明点这里](./README_CN.md)
 
 ## Update：
 * Add RGB Color Picker nodes makes color selection more convenient.
