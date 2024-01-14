@@ -1,6 +1,6 @@
 # Comfy WordCloud：
 ComfyUI生成词云图像的插件。
-![image](image/comfy_wordcloud_simple.png)
+![image](image/comfy_wordcloud_advance.png)
 
 ### 更新：
 通过编辑插件根目录下的font_dir.ini，用户可以自定义字体目录。每次启动comfyUI时，这个目录下*.ttf和*.otf文件将收集显示在插件font_path选择项中。
@@ -70,7 +70,7 @@ string字符串。
 
 ## 使用示例：
 
-![image](image/comfy_wordcloud_advance.png)
+![image](image/comfy_wordcloud_simple.png)
 在workflow目录下有json格式的工作流示例文件。
 
 ## 安装方法：  
