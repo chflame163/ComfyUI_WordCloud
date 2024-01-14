@@ -144,9 +144,11 @@ class ComfyWordCloud:
         freq_dict = WordCloud().process_text(' '.join(jieba.cut(text)))
         if not keynote_words == '':
             keynote_list = list(re.split(r'[，,\s*]', keynote_words))
+            keynote_list = [x for x in keynote_list if x != '']  # 去除空字符
             keynote_dict = {keynote_list[i]: keynote_weight + max(freq_dict.values()) for i in range(len(keynote_list))}
             freq_dict.update(keynote_dict)
         log(f"word frequencies dict generated, include {len(freq_dict)} words.")
+
 
         font_path = font_dict[font_path]
         if not os.path.exists(font_path):
@@ -158,8 +160,9 @@ class ComfyWordCloud:
 
         stopwords_set = set("")
         if not stopwords == "":
-            # stopwords_set = set(STOPWORDS).union(set(re.split(r'[，,\s*]', stopwords)))  # 与自带默认排除词集合合并
-            stopwords_set = set(re.split(r'[，,\s*]', stopwords))
+            stopwords_list = re.split(r'[，,\s*]', stopwords)
+            stopwords_set= set([x for x in stopwords_list if x != ''])  # 去除空字符
+            
             # 同时在词典中删除（stopwords之bug）
             for item in stopwords_set:
                 if item in freq_dict.keys():
