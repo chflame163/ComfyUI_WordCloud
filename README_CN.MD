@@ -1,5 +1,5 @@
 # ComfyUI Word Cloud：
-ComfyUI生成词云图像的插件。
+ComfyUI生成词云图像的插件，是 [word_cloud](https://github.com/amueller/word_cloud) 在ComfyUI中的实现。
 ![image](image/comfy_wordcloud_advance.png)
 
 ## 更新：
