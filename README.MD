@@ -5,7 +5,7 @@ A plugin to generating word cloud images for ComfyUI
 [中文说明点这里](./README_CN.MD)
 
 ## Update：
-* Add RGB Color Picker nodes makes color selection more convenient.
+* Add RGB Color Picker node that makes color selection more convenient.
 
 * By editing the font_dir.ini, located in the root directory of the plugin, users can customize the font directory. Every time comfyUI is launched, the *.ttf and *.otf files 
 in this directory will be collected and displayed in the plugin font_path option.
@@ -52,7 +52,7 @@ Node options：
 * keynote_words: The words set here will be further enlarged, except for those with the same words set in stopwords. Separate each word with a comma (both in Chinese and English) or a space.
 * keynote_weight: Weighted key for keynote words. The larger the value, the relatively larger the key words.
 
-Output：
+Output Type：
 image(support alpha channel)
 
 ### RGB Color Picker
@@ -63,7 +63,7 @@ Modify web extensions from [mtb nodes](https://github.com/melMass/comfy_mtb). Se
 Node options：   
 * mode： The output format is available in hexadecimal (HEX) and decimal (DEC).  
 
-Output： 
+Output Type： 
 string
 
 ### Load Text File：
@@ -73,17 +73,20 @@ Load a text file from the specified path and set to use UTF-8 encoding.
 Options：   
 * path： Directory for .txt file。   
 
-Output： 
+Output Type： 
 string
 
 ## Example workflow
 
 ![image](image/comfy_wordcloud_simple.png)
-There is a JSON format workflow example file in the workflow directory.
+Some JSON workflow files in the workflow directory, that is example for ComfyUI.
 
 ## How to install  
 
-* Open the cmd window in the plugin directory of ComfyUI, like "ComfyUI\custom_nodes\"，type```git clone https://github.com/chflame163/ComfyUI_WordCloud.git```, or download the zip file and extracted, copy the resulting folder to ComfyUI\custom_ Nodes\
+* Open the cmd window in the plugin directory of ComfyUI, like "ComfyUI\custom_nodes\"，type```git clone https://github.com/chflame163/ComfyUI_WordCloud.git```
+Or download the zip file and extracted, copy the resulting folder to ComfyUI\custom_ Nodes\
+
 * Install dependency packages in the resource manager ComfyUI\custom_ Nodes\ComfyUI_ Open the cmd window in the WordCloud plugin directory location and enter the following command:
 ```..\..\..\python_embeded\python.exe -m pip install -r requirements.txt```
-* restart ComfyUI
+
+* Restart ComfyUI
