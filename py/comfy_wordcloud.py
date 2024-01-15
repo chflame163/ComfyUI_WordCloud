@@ -177,8 +177,14 @@ class ComfyWordCloud:
             random_state = None
 
         mask = None
+        image_width = width
+        image_height = height
         if not mask_image == None:
-            mask = np.array(img_whitebackground(tensor2pil(mask_image)))
+            p_mask = tensor2pil(mask_image)
+            mask = np.array(img_whitebackground(p_mask))
+            image_width = p_mask.width
+            image_height = p_mask.height
+
 
         # set wordcloud parameters
         wc = WordCloud(width=width, height=height, scale=scale, margin=margin,
@@ -195,7 +201,9 @@ class ComfyWordCloud:
 
         # generate recolor
         if not color_ref_image == None:
-            image_colors = ImageColorGenerator(np.array(tensor2pil(color_ref_image)))
+            p_color_ref_image = tensor2pil(color_ref_image)
+            p_color_ref_image = p_color_ref_image.resize((image_width, image_height))
+            image_colors = ImageColorGenerator(np.array(p_color_ref_image))
             wc.recolor(color_func=image_colors)
 
         return (pil2tensor(wc.to_image()),)
