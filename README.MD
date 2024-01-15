@@ -1,5 +1,5 @@
 # ComfyUI Word Cloud：
-A plugin to generating word cloud images for ComfyUI
+A plugin to generating word cloud images for ComfyUI, it is the implementation of the ![word_cloud](https://github.com/amueller/word_cloud) on comfyui.
 ![image](image/comfy_wordcloud_advance.png)
 
 [中文说明点这里](./README_CN.MD)
