@@ -5,6 +5,9 @@ A plugin to generating word cloud images for ComfyUI, it is the implementation o
 [中文说明点这里](./README_CN.MD)
 
 ## Update：
+* Word Cloud node add mask output.
+![image](image/word_cloud_mask.png)
+
 * Add RGB Color Picker node that makes color selection more convenient.
 
 * By editing the font_dir.ini, located in the root directory of the plugin, users can customize the font directory. Every time comfyUI is launched, the *.ttf and *.otf files 
@@ -54,6 +57,7 @@ Node options：
 
 Output Type：
 image(support alpha channel)
+mask
 
 ### RGB Color Picker
 ![image](image/rgb_color_picker.png)

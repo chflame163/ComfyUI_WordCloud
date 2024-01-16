@@ -3,16 +3,41 @@
   "last_link_id": 1,
   "nodes": [
     {
+      "id": 2,
+      "type": "PreviewImage",
+      "pos": [
+        1488,
+        305
+      ],
+      "size": {
+        "0": 398.4970397949219,
+        "1": 362.7762756347656
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
       "id": 1,
       "type": "ComfyWordCloud",
       "pos": [
         971,
         304
       ],
-      "size": [
-        439.34042327880866,
-        655.6006048583986
-      ],
+      "size": {
+        "0": 439.3404235839844,
+        "1": 655.6005859375
+      },
       "flags": {},
       "order": 0,
       "mode": 0,
@@ -37,6 +62,12 @@
           ],
           "shape": 3,
           "slot_index": 0
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
         }
       ],
       "properties": {
@@ -48,7 +79,7 @@
         512,
         1,
         0,
-        "c:\\font.ttf",
+        "Alibaba-PuHuiTi-Heavy.ttf",
         4,
         128,
         0.5,
@@ -66,31 +97,6 @@
         "重 大 新 闻",
         60
       ]
-    },
-    {
-      "id": 2,
-      "type": "PreviewImage",
-      "pos": [
-        1488,
-        305
-      ],
-      "size": [
-        398.4970375366213,
-        362.77627069091807
-      ],
-      "flags": {},
-      "order": 1,
-      "mode": 0,
-      "inputs": [
-        {
-          "name": "images",
-          "type": "IMAGE",
-          "link": 1
-        }
-      ],
-      "properties": {
-        "Node name for S&R": "PreviewImage"
-      }
     }
   ],
   "links": [

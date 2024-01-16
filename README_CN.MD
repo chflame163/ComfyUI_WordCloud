@@ -3,6 +3,9 @@ ComfyUI生成词云图像的插件，是 [word_cloud](https://github.com/amueller/word_clou
 ![image](image/comfy_wordcloud_advance.png)
 
 ## 更新：
+* Word Cloud节点增加mask输出。
+![image](image/word_cloud_mask.png)
+
 * 增加RGB Color Picker节点，选择颜色更加方便。
 
 * 通过编辑插件根目录下的font_dir.ini，用户可以自定义字体目录。每次启动comfyUI时，这个目录下*.ttf和*.otf文件将收集显示在插件font_path选择项中。
@@ -51,6 +54,7 @@ font_dir.ini默认是windows系统字体目录(C:\Windows\fonts)。
 
 输出：
 image(支持alpha通道)
+mask
 
 ### RGB Color Picker
 ![image](image/rgb_color_picker.png)
