@@ -53,8 +53,8 @@ font_dir.ini默认是windows系统字体目录(C:\Windows\fonts)。
 * keynote_weight: 重点词加权。数值越大，重点词相对越大。
 
 输出：
-image(支持alpha通道)
-mask
+* image(支持alpha通道)
+* mask
 
 ### RGB Color Picker
 ![image](image/rgb_color_picker.png)
@@ -64,7 +64,7 @@ mask
 * mode： 输出格式，有十六进制(HEX)和十进制(DEC)可选择。  
 
 输出： 
-string字符串。
+* string字符串。
 
 ### Load Text File：
 ![image](image/load_text_file.png)
@@ -74,7 +74,7 @@ string字符串。
 * path： txt文件路径。   
 
 输出： 
-string字符串。
+* string字符串。
 
 ## 使用示例：
 

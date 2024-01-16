@@ -56,8 +56,8 @@ Node options：
 * keynote_weight: Weighted key for keynote words. The larger the value, the relatively larger the key words.
 
 Output Type：
-image(support alpha channel)
-mask
+* image(support alpha channel)
+* mask
 
 ### RGB Color Picker
 ![image](image/rgb_color_picker.png)
@@ -68,7 +68,7 @@ Node options：
 * mode： The output format is available in hexadecimal (HEX) and decimal (DEC).  
 
 Output Type： 
-string
+* string
 
 ### Load Text File：
 ![image](image/load_text_file.png)
@@ -78,7 +78,7 @@ Options：
 * path： Pathname for .txt file。   
 
 Output Type： 
-string
+* string
 
 ## Example workflow
 
