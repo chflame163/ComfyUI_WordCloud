@@ -58,6 +58,10 @@ def tensor2pil(image):
 def pil2tensor(image):
     return torch.from_numpy(np.array(image).astype(np.float32) / 255.0).unsqueeze(0)
 
+def getRGBAmask(image):
+    ret_mask = torch.tensor([pil2tensor(image)[0, :, :, 3].tolist()])
+    return ret_mask
+
 def img_whitebackground(image):
     if image.mode != 'RGBA':
         image = image.convert('RGBA')
@@ -65,7 +69,6 @@ def img_whitebackground(image):
     height = image.height
     img_new = Image.new('RGB', size=(width, height), color=(255, 255, 255))
     img_new.paste(image, (0, 0), mask=image)
-
     return img_new
 
 class ComfyWordCloud:
@@ -201,7 +204,7 @@ class ComfyWordCloud:
             wc.recolor(color_func=image_colors)
 
         ret_image = wc.to_image().convert('RGBA')
-        ret_mask = pil2tensor(ret_image)[0, :, :, 3]
+        ret_mask = getRGBAmask(ret_image)
 
         return (pil2tensor(ret_image), ret_mask,)
 
