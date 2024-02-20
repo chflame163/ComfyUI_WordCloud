@@ -119,7 +119,7 @@ class ComfyWordCloud:
     RETURN_TYPES = ("IMAGE", "MASK",)
     RETURN_NAMES = ("image", "mask",)
     FUNCTION = 'wordcloud'
-    CATEGORY = '😺dzNodes'
+    CATEGORY = '😺dzNodes/WordCloud'
     OUTPUT_NODE = True
 
     def wordcloud(self, text, width, height, margin, scale, font_path,

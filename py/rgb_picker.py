@@ -28,7 +28,7 @@ class RGB_Picker:
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("value",)
     FUNCTION = 'picker'
-    CATEGORY = '😺dzNodes'
+    CATEGORY = '😺dzNodes/WordCloud'
     OUTPUT_NODE = True
 
     def picker(self, color, mode,):

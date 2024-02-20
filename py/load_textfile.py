@@ -20,7 +20,7 @@ class LoadTextFile:
     RETURN_NAMES = ("Text",)
     FUNCTION = "load_text_file"
     OUTPUT_NODE = True
-    CATEGORY = '😺dzNodes'
+    CATEGORY = '😺dzNodes/WordCloud'
 
     def load_text_file(self, path):
 
