@@ -12,12 +12,18 @@ NODE_DISPLAY_NAME_MAPPINGS = {}
 
 python = sys.executable
 extentions_folder = os.path.join(os.path.dirname(os.path.realpath(__main__.__file__)),
-                                 "web" + os.sep + "extensions" + os.sep + "dzNodes")
+                                 "web" + os.sep + "extensions" + os.sep + "mtb")
 javascript_folder = os.path.join(os.path.dirname(os.path.realpath(__file__)), "mtb")
+outdate_file_list = ['comfy_shared.js', 'debug.js', 'mtb_widgets.js', 'parse-css.js', 'dz_widgets.js']
 
 if not os.path.exists(extentions_folder):
-    log('Making the "web\extensions\dzNodes" folder')
+    log('Making the "web\extensions\mtb" folder')
     os.mkdir(extentions_folder)
+else:
+    for i in outdate_file_list:
+        outdate_file = os.path.join(extentions_folder, i)
+        if os.path.exists(outdate_file):
+            os.remove(outdate_file)
 
 result = filecmp.dircmp(javascript_folder, extentions_folder)
 

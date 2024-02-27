@@ -1,6 +1,6 @@
 /**
  * File: debug.js
- * Project: comfy_mtb
+ * Project: comfy_DZ
  * Author: Mel Massadian
  *
  * Copyright (c) 2023 Mel Massadian
@@ -9,9 +9,9 @@
 
 import { app } from '../../scripts/app.js'
 
-import * as shared from './comfy_shared.js'
-import { log } from './comfy_shared.js'
-import { MtbWidgets } from './mtb_widgets.js'
+import * as shared from './dz_comfy_shared.js'
+import { log } from './dz_comfy_shared.js'
+import { DZWidgets } from './dz_DZ_widgets.js'
 
 // TODO: respect inputs order...
 
@@ -24,18 +24,9 @@ function escapeHtml(unsafe) {
     .replace(/'/g, '&#039;')
 }
 app.registerExtension({
-  name: 'mtb.Debug',
+  name: 'DZ.Debug',
   async beforeRegisterNodeDef(nodeType, nodeData, app) {
-    if (nodeData.name === 'Debug (mtb)') {
-      const onNodeCreated = nodeType.prototype.onNodeCreated
-      nodeType.prototype.onNodeCreated = function () {
-        const r = onNodeCreated
-          ? onNodeCreated.apply(this, arguments)
-          : undefined
-        this.addInput(`anything_1`, '*')
-        return r
-      }
-
+    if (nodeData.name === 'Debug (DZ)') {
       const onConnectionsChange = nodeType.prototype.onConnectionsChange
       nodeType.prototype.onConnectionsChange = function (
         type,
@@ -75,18 +66,15 @@ app.registerExtension({
           // const pos = this.widgets.findIndex((w) => w.name === "anything_1");
           // if (pos !== -1) {
           for (let i = 0; i < this.widgets.length; i++) {
-            if (this.widgets[i].name !== 'output_to_console') {
-              this.widgets[i].onRemoved?.()
-            }
+            this.widgets[i].onRemoved?.()
           }
-          this.widgets.length = 1
+          this.widgets.length = 0
         }
         let widgetI = 1
-
         if (message.text) {
           for (const txt of message.text) {
             const w = this.addCustomWidget(
-              MtbWidgets.DEBUG_STRING(`${prefix}_${widgetI}`, escapeHtml(txt))
+              DZWidgets.DEBUG_STRING(`${prefix}_${widgetI}`, escapeHtml(txt))
             )
             w.parent = this
             widgetI++
@@ -95,7 +83,7 @@ app.registerExtension({
         if (message.b64_images) {
           for (const img of message.b64_images) {
             const w = this.addCustomWidget(
-              MtbWidgets.DEBUG_IMG(`${prefix}_${widgetI}`, img)
+              DZWidgets.DEBUG_IMG(`${prefix}_${widgetI}`, img)
             )
             w.parent = this
             widgetI++
@@ -112,7 +100,6 @@ app.registerExtension({
             if (this.widgets[y].canvas) {
               this.widgets[y].canvas.remove()
             }
-            shared.cleanupNode(this)
             this.widgets[y].onRemoved?.()
           }
         }
