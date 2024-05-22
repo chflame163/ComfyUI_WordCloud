@@ -1,0 +1,15 @@
+[project]
+name = "comfyui_wordcloud"
+description = "Nodes:Word Cloud, Load Text File"
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["numpy", "pillow", "torch", "matplotlib", "wordcloud", "jieba"]
+
+[project.urls]
+Repository = "https://github.com/chflame163/ComfyUI_WordCloud"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI_WordCloud"
+Icon = ""
