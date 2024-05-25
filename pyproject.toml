@@ -10,6 +10,6 @@ Repository = "https://github.com/chflame163/ComfyUI_WordCloud"
 #  Used by Comfy Registry https://comfyregistry.org
 
 [tool.comfy]
-PublisherId = ""
+PublisherId = "chflame163"
 DisplayName = "ComfyUI_WordCloud"
 Icon = ""
